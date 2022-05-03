@@ -6,6 +6,9 @@ resource "google_container_cluster" "cluster" {
     name                = var.name
     location            = var.region
     initial_node_count  = var.node_count
+    resource_labels = {
+        ak              = "andrii_kondratenko"
+    }
 
     node_config {
         service_account = data.google_service_account.service_account.email
