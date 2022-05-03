@@ -22,4 +22,8 @@ resource "google_container_cluster" "cluster" {
         create          = "30m"
         update          = "40m"
     }
+
+    lifecycle {
+        ignore_changes = ["master_auth", "network"]
+    }
 }
