@@ -24,5 +24,6 @@ module "artifact_registry" {
 
   name                    = var.artifact_registry_name
   region                  = var.region
+  project_name            = var.project_name
   labels                  = var.labels
 }
