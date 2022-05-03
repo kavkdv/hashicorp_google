@@ -20,7 +20,22 @@ resource "google_container_cluster" "cluster" {
     initial_node_count  = var.node_count
     project             = var.project_name
     resource_labels     = var.labels
-    subnetwork          = google_compute_subnetwork.cluster_subnet.self_link
+    network             = data.google_compute_network.spoke_network.id
+    subnetwork          = google_compute_subnetwork.cluster_subnet.id
+    remove_default_node_pool = false
+
+    ip_allocation_policy {
+        cluster_ipv4_cidr_block     = "10.101.0.0/16"
+        services_ipv4_cidr_block    = "10.102.0.0/16"
+    }
+
+    master_authorized_networks_config {}
+
+    private_cluster_config {
+        enable_private_nodes    = true
+        enable_private_endpoint = true
+        master_ipv4_cidr_block  = "10.100.100.0/28"
+    }
 
     node_config {
         service_account = data.google_service_account.service_account.email
