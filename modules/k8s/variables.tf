@@ -17,3 +17,13 @@ variable "node_count" {
     type        = number
     description = "The cluster node count"
 }
+
+variable "project_name" {
+    type        = string
+    description = "The project name"
+}
+
+variable "labels" {
+    type        = map
+    description = "Labels"
+}

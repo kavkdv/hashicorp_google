@@ -6,17 +6,14 @@ resource "google_container_cluster" "cluster" {
     name                = var.name
     location            = var.region
     initial_node_count  = var.node_count
-    resource_labels = {
-        ak              = "andrii_kondratenko"
-    }
+    project             = var.project_name
+    resource_labels     = var.labels
 
     node_config {
         service_account = data.google_service_account.service_account.email
         oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
 
-        labels = {
-            ak          = "Andrii.Kondratenko"
-        }
+        labels          = var.labels
 
         tags            = ["ak"]
     }
