@@ -1,26 +1,18 @@
 ####### PROVIDERS #######
 
 provider "google" {
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone
+  project                 = var.project_name
+  region                  = var.region
+  zone                    = var.zone
 }
 
-####### RESOURCES #######
+####### MODULES #######
 
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "e2-micro"
+module "cluster" {
+  source                  = "../modules/k8s"
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
-
-  network_interface {
-    # A default network is created for all GCP projects
-    network = "default"
-    access_config {}
-  }
+  service_account_name    = var.service_account_name
+  name                    = var.cluster_name
+  region                  = var.region
+  node_count              = var.cluster_node_count
 }
