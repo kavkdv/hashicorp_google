@@ -25,6 +25,11 @@ variable "labels" {
     description = "Labels"
 }
 
+variable "spoke_name" {
+    type        = string
+    description = "The spoke network name"
+}
+
 ###### CLUSTER #######
 
 variable "cluster_node_count" {
@@ -35,6 +40,16 @@ variable "cluster_node_count" {
 variable "cluster_name" {
     type        = string
     description = "The cluster name"
+}
+
+variable "cluster_subnet_name" {
+    type        = string
+    description = "The cluster subnet name"
+}
+
+variable "cluster_subnet_cidr" {
+    type        = string
+    description = "The cluster subnet cidr"
 }
 
 ###### ARTIFACT REGISTRY #######

@@ -27,3 +27,18 @@ variable "labels" {
     type        = map
     description = "Labels"
 }
+
+variable "spoke_network_name" {
+    type        = string
+    description = "The spoke network name"
+}
+
+variable "subnet_name" {
+    type        = string
+    description = "The cluster subnet name"
+}
+
+variable "subnet_cidr" {
+    type        = string
+    description = "The cluster subnet cidr"
+}
