@@ -12,10 +12,7 @@ resource "google_container_cluster" "cluster" {
     node_config {
         service_account = data.google_service_account.service_account.email
         oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
-
         labels          = var.labels
-
-        tags            = ["ak"]
     }
 
     timeouts {
@@ -24,6 +21,6 @@ resource "google_container_cluster" "cluster" {
     }
 
     lifecycle {
-        ignore_changes = ["master_auth", "network"]
+        ignore_changes = [master_auth, network]
     }
 }
